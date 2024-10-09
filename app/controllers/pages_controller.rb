@@ -62,7 +62,7 @@ class PagesController < ApplicationController
         "syllabus": "https://drive.google.com/file/d/1kBzHaX9vggS6Cwfw5Mba5RDeCmck0XlF/view",
         "link": "https://start.lewagon.com/catalog",
         "restriction": "sincrónico",
-        "success": "https://learn.lewagon.com/onboarding?secure_token=43fb269d2fe3d15e239714b0f71d0ecf",
+        "success": "https://learn.lewagon.com/onboarding?secure_token=c3bde41fede14064da8d875c74406929",
         "event": "interes_curso_sync",
         "dates": "19-Nov al 23-Ene",
         "time": "19:00 a 21:30 horas",
