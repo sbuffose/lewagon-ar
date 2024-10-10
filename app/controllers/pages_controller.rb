@@ -2,6 +2,8 @@ require 'mercadopago'
 
 class PagesController < ApplicationController
   def home
+    discount = 1
+
     if params["dark-mode"] == "on"
       @dark_mode = "dark"
     else
@@ -10,13 +12,16 @@ class PagesController < ApplicationController
 
     if params["partner"].present?
       @partner = params["partner"]
+      if @partner == "avalanche" || @partner == "alumni"
+        discount = 0.85
+      end
     end
 
     @bootcamps = [
       {
         "name": 'Desarrollo Web & AI',
         "hours": 400,
-        "price": 5500,
+        "price": 5500 * discount,
         "description": 'Conviértete en desarrollador de software y construye aplicaciones web desde la base de datos hasta la interfaz de usuarios.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -28,7 +33,7 @@ class PagesController < ApplicationController
       {
         "name": 'Data Science & IA',
         "hours": 400,
-        "price": 5500,
+        "price": 5500 * discount,
         "description": 'Aprende las habilidades de un científico de datos y construye tus propios productos de inteligencia artificial desde cero.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -40,7 +45,7 @@ class PagesController < ApplicationController
       {
         "name": 'Data Analytics & AI',
         "hours": 400,
-        "price": 5500,
+        "price": 5500 * discount,
         "description": 'Desde la recopilación de datos hasta su visualización, adquiere todos los conocimientos técnicos y de negocio necesarios para iniciar una carrera exitosa como analista de datos.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -54,7 +59,7 @@ class PagesController < ApplicationController
       {
         "name": 'Webflow',
         "hours": 40,
-        "price": 800,
+        "price": 800 * discount,
         "description": 'Imagina y crea tu propia página web de principio a fin sin necesidad de programar. Con Webflow, puedes diseñar, construir y lanzar una web funcional utilizando una interfaz visual intuitiva.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -71,7 +76,7 @@ class PagesController < ApplicationController
       {
         "name": 'Data Analytics Essentials',
         "hours": 40,
-        "price": 800,
+        "price": 800 * discount,
         "description": 'Gana autonomía en el uso de los datos gracias a SQL, Google Data Studio y Google Sheets, y aprende a realizar análisis basados en datos corporativos reales.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -88,7 +93,7 @@ class PagesController < ApplicationController
       {
         "name": 'Data Analytics con Power BI',
         "hours": 60,
-        "price": 800,
+        "price": 800 * discount,
         "description": 'Optimiza el procesamiento de grandes bases de datos para la toma de decisiones con el dominio de Excel y Power BI.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
@@ -107,7 +112,7 @@ class PagesController < ApplicationController
       {
         "name": 'UX and UI Design',
         "hours": 24,
-        "price": 200,
+        "price": 80 * discount,
         "description": 'Aprende a construir prototipos de productos digitales entendiendo cómo se aplican la experiencia de Usuario y el diseño de las interfaces. Aprenderás sobre Figma y Analytics.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
@@ -122,7 +127,7 @@ class PagesController < ApplicationController
       {
         "name": 'Intro a Desarrollo Web',
         "hours": 24,
-        "price": 200,
+        "price": 80 * discount,
         "description": 'Este programa busca darle la introducción al desarrollo de plataforma web. Durante el programa aprenderás sobre HTML, CSS, JavaScript, Ruby, Figma, Git, y la terminal.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -137,7 +142,7 @@ class PagesController < ApplicationController
       {
         "name": 'Intro a Análisis de Datos',
         "hours": 24,
-        "price": 200,
+        "price": 80 * discount,
         "description": 'Adquieres los conocimientos necesarios para poder analizar datos y tranformarlos en oportunidades de negocio. Toma decisiones inteligentemente. Aprenderás sobra Looker Studio, SQL y más.',
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />

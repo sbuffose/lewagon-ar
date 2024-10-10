@@ -5,8 +5,8 @@
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="flex flex-wrap items-center gap-4 p-2">
           <%= image_tag "logo-lewagon.svg?height=40&width=120", class:"h-10" %>
-          <% if @partner %>
-            <%= image_tag "#{@partner}.svg?height=40&width=120", class:"h-10" %>
+          <% if @partner && asset_exists?("#{@partner}.svg") %>
+            <%= image_tag "#{@partner}.svg?height=40&width=120", class: "h-10" %>
           <% end %>
         </div>
         <nav class="hidden md:flex space-x-4">
@@ -106,7 +106,7 @@
                               <div class="text-right">
                                 <p class="text-lg font-light text-indigo-600 dark:text-indigo-400"><s data-purchase-target="original"></s></p>
                                 <p class="text-lg font-bold text-indigo-600 dark:text-indigo-400"><span data-purchase-target="real"></span></p>
-                                <p class="text-sm font-light text-indigo-600 dark:text-indigo-400"><span></span>x 6 meses</p>
+                                <p class="text-sm font-light text-indigo-600 dark:text-indigo-400"><span></span>x 12 meses</p>
                               </div>
                             </div>
                             <h3 class="text-xl font-semibold mb-2 dark:text-white" data-purchase-target="title"></h3>
@@ -170,9 +170,9 @@
                             <%= course[:icon].html_safe %>
                           </div>
                           <div class="text-right">
-                            <p class="text-lg font-light text-red-600 dark:text-red-400"><s> <%= (course[:price].to_i / 6).round %> USD/mes </s></p>
-                            <p class="text-lg font-bold text-red-600 dark:text-red-400"><span></span><%= (course[:price].to_i / 6 * 0.8).round %> USD/mes</p>
-                            <p class="text-sm font-light text-red-600 dark:text-red-400"><span></span>x 6 meses</p>
+                            <p class="text-lg font-light text-red-600 dark:text-red-400"><s> <%= (course[:price].to_i * 1.2).round %> USD/mes </s></p>
+                            <p class="text-lg font-bold text-red-600 dark:text-red-400"><span></span><%= (course[:price].to_i / 12 * 1.5).round %> USD/mes</p>
+                            <p class="text-sm font-light text-red-600 dark:text-red-400"><span></span>x 12 meses</p>
                           </div>
                         </div>
                         <h3 class="text-xl font-semibold mb-2 dark:text-white"><%= course[:name] %></h3>
@@ -191,8 +191,8 @@
                                 data-purchase-course-price="<%= course[:price] %>"
                                 data-purchase-course-description="<%= course[:description] %>"
                                 data-purchase-preference-id="<%= @preference_ids[course[:name]] %>"
-                                data-purchase-original-price="<%= (course[:price].to_i / 6).round %>"
-                                data-purchase-real-price="<%= (course[:price].to_i / 6 * 0.8).round %>"
+                                data-purchase-original-price="<%= (course[:price].to_i * 1.2).round %>"
+                                data-purchase-real-price="<%= (course[:price].to_i / 12 * 1.5).round %>"
                                 data-purchase-restriction="<%= course[:restriction] %>"
                                 data-purchase-hours="<%= course[:hours] %>"
                                 data-purchase-title="<%= course[:name] %>"
@@ -232,9 +232,9 @@
                           <%= course[:icon].html_safe %>
                         </div>
                         <div class="text-right">
-                          <p class="text-lg font-light text-indigo-600 dark:text-indigo-400"><s><%= (course[:price].to_i / 6).round %> USD/mes </s></p>
-                          <p class="text-lg font-bold text-indigo-600 dark:text-indigo-400"><span></span><%= (course[:price].to_i / 6 * 0.8).round %> USD/mes</p>
-                          <p class="text-sm font-light text-indigo-600 dark:text-indigo-400"><span></span>x 6 meses</p>
+                          <p class="text-lg font-light text-indigo-600 dark:text-indigo-400"><s><%= (course[:price].to_i * 1.2).round %> USD/mes </s></p>
+                          <p class="text-lg font-bold text-indigo-600 dark:text-indigo-400"><span></span><%= (course[:price].to_i / 12 * 1.5).round %> USD/mes</p>
+                          <p class="text-sm font-light text-indigo-600 dark:text-indigo-400"><span></span>x 12 meses</p>
                         </div>
                       </div>
                       <h3 class="text-xl font-semibold mb-2 dark:text-white"><%= course[:name] %></h3>
@@ -253,8 +253,8 @@
                                 data-purchase-course-price="<%= course[:price] %>"
                                 data-purchase-course-description="<%= course[:description] %>"
                                 data-purchase-preference-id="<%= @preference_ids[course[:name]] %>"
-                                data-purchase-original-price="<%= (course[:price].to_i / 6).round %>"
-                                data-purchase-real-price="<%= (course[:price].to_i / 6 * 0.8).round %>"
+                                data-purchase-original-price="<%= (course[:price].to_i * 1.2).round %>"
+                                data-purchase-real-price="<%= (course[:price].to_i / 12 * 1.5).round %>"
                                 data-purchase-restriction="<%= course[:restriction] %>"
                                 data-purchase-hours="<%= course[:hours] %>"
                                 data-purchase-title="<%= course[:name] %>"
@@ -299,8 +299,8 @@
                         <%= course[:icon].html_safe %>
                       </div>
                       <div class="text-right">
-                        <p class="text-lg font-light text-red-600 dark:text-red-400"><s><%= (course[:price].to_i / 12).round %> USD/mes </s></p>
-                        <p class="text-lg font-bold text-red-600 dark:text-red-400"><span></span><%= (course[:price].to_i / 12 * 0.8).round %> USD/mes</p>
+                        <p class="text-lg font-light text-red-600 dark:text-red-400"><s><%= (course[:price].to_i).round %> USD/mes </s></p>
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400"><span></span><%= (course[:price].to_i / 12 * 1.15).round %> USD/mes</p>
                         <p class="text-sm font-light text-red-600 dark:text-red-400"><span></span>x 12 meses</p>
                       </div>
                     </div>
