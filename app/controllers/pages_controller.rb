@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
     if params["partner"].present?
       @partner = params["partner"]
-      if @partner == "avalanche" || @partner == "alumni"
+      if @partner == "avalanche" || @partner == "alumni" || @partner == "huerta"
         discount = 0.85
       end
     end
