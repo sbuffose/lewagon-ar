@@ -3,6 +3,7 @@ require 'mercadopago'
 class PagesController < ApplicationController
   def home
     discount = 1
+    off = 0
 
     if params["dark-mode"] == "on"
       @dark_mode = "dark"
@@ -26,7 +27,7 @@ class PagesController < ApplicationController
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>',
-        "syllabus": "https://drive.google.com/file/d/1wbwNRlwUmiieUhmrZ9y35u-g_3mL5dnv/view",
+        "syllabus": "https://drive.google.com/file/d/1CjX1d5FEMNlyAlVXtnUGBUjZKc0UCQZB/view",
         "link": "https://www.lewagon.com/es/apply?program_slug=web",
         "restriction": "requiere entrevista"
       },
@@ -38,7 +39,7 @@ class PagesController < ApplicationController
         "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
           </svg>',
-        "syllabus": "https://drive.google.com/file/d/1uOv-vmD8HBssuQH8Be2qHfwnTumpAWaS/view",
+        "syllabus": "https://drive.google.com/file/d/1xqJ1MQhLndSgPj1LWWiN5XT6QORr4xC0/view",
         "link": "https://www.lewagon.com/es/apply?program_slug=data",
         "restriction": "requiere entrevista"
       },
@@ -52,6 +53,18 @@ class PagesController < ApplicationController
           </svg>',
         "syllabus": "https://drive.google.com/file/d/1YRcNNsTFzHTmsmJyQ151v-cz2XG-UDTZ/view",
         "link": "https://www.lewagon.com/es/apply?program_slug=data_analytics",
+        "restriction": "requiere entrevista"
+      },
+      {
+        "name": 'Ingeniería de Datos',
+        "hours": 400,
+        "price": 5500 * discount,
+        "description": 'Desde la extracción de datos de múltiples fuentes hasta su almacenamiento en bases de datos, adquiere las competencias necesarias para construir pipelines de datos eficientes. Inicia tu carrera como ingeniero de datos y contribuye a la estrategia empresarial mediante un manejo óptimo de la información. ',
+        "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>',
+        "syllabus": "https://drive.google.com/file/d/1YRcNNsTFzHTmsmJyQ151v-cz2XG-UDTZ/view",
+        "link": "https://www.lewagon.com/es/apply?program_slug=data_engineering",
         "restriction": "requiere entrevista"
       }
     ]
@@ -74,7 +87,7 @@ class PagesController < ApplicationController
         "format": "sync"
       },
       {
-        "name": 'Data Analytics Essentials',
+        "name": 'Business Intelligence en la Google Suite',
         "hours": 40,
         "price": 800 * discount,
         "description": 'Gana autonomía en el uso de los datos gracias a SQL, Google Data Studio y Google Sheets, y aprende a realizar análisis basados en datos corporativos reales.',
@@ -91,7 +104,7 @@ class PagesController < ApplicationController
         "format": "sync"
       },
       {
-        "name": 'Data Analytics con Power BI',
+        "name": 'Power BI y Excel',
         "hours": 60,
         "price": 800 * discount,
         "description": 'Optimiza el procesamiento de grandes bases de datos para la toma de decisiones con el dominio de Excel y Power BI.',
@@ -110,7 +123,7 @@ class PagesController < ApplicationController
     ]
     @async = [
       {
-        "name": 'UX and UI Design',
+        "name": 'Introducción a UX/UI Design',
         "hours": 24,
         "price": 80 * discount,
         "description": 'Aprende a construir prototipos de productos digitales entendiendo cómo se aplican la experiencia de Usuario y el diseño de las interfaces. Aprenderás sobre Figma y Analytics.',
@@ -125,7 +138,7 @@ class PagesController < ApplicationController
         "format": "async"
       },
       {
-        "name": 'Intro a Desarrollo Web',
+        "name": 'Introducción a Productos Digitales y Software',
         "hours": 24,
         "price": 80 * discount,
         "description": 'Este programa busca darle la introducción al desarrollo de plataforma web. Durante el programa aprenderás sobre HTML, CSS, JavaScript, Ruby, Figma, Git, y la terminal.',
@@ -140,7 +153,7 @@ class PagesController < ApplicationController
         "format": "async"
       },
       {
-        "name": 'Intro a Análisis de Datos',
+        "name": 'Business Analytics',
         "hours": 24,
         "price": 80 * discount,
         "description": 'Adquieres los conocimientos necesarios para poder analizar datos y tranformarlos en oportunidades de negocio. Toma decisiones inteligentemente. Aprenderás sobra Looker Studio, SQL y más.',
@@ -151,6 +164,36 @@ class PagesController < ApplicationController
         "link": "https://start.lewagon.com/catalog",
         "restriction": "asincrónico",
         "success": "https://learn.lewagon.com/onboarding?secure_token=2595ed03a988255ae4b262b8821da944",
+        "event": "interes_curso_async",
+        "format": "async"
+      },
+      {
+        "name": 'Introducción a Front End',
+        "hours": 24,
+        "price": 80 * discount,
+        "description": 'Aprenderás a crear páginas web usando HTML y CSS. Comenzarás construyendo estructuras con HTML y aplicando estilos con CSS para crear sitios modernos y responsivos.',
+        "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>',
+        "syllabus": "https://drive.google.com/file/d/1w5W-H2-ZV03T1qq-z21m-nZ6wBfzYavR/view?usp=sharing",
+        "link": "https://start.lewagon.com/catalog",
+        "restriction": "asincrónico",
+        "success": "https://learn.lewagon.com/onboarding?secure_token=61e42c0feb03330f226abd7fb86e34c0",
+        "event": "interes_curso_async",
+        "format": "async"
+      },
+      {
+        "name": 'Data Master - EDA',
+        "hours": 24,
+        "price": 80 * discount,
+        "description": 'Adquiere a desarrollar análisis de datos aplicando técnicas exploratorias, pre-procesamiento y limpieza de los mismos con Excel y PowerBI.',
+        "icon": '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>',
+        "syllabus": "https://drive.google.com/file/d/1WRRfcP_pMUw5zbn8To3C5BBpm5EBxeVA/view",
+        "link": "https://start.lewagon.com/catalog",
+        "restriction": "asincrónico",
+        "success": "https://learn.lewagon.com/onboarding?secure_token=08c050d19d59685c39c2937b175f19a7",
         "event": "interes_curso_async",
         "format": "async"
       }
